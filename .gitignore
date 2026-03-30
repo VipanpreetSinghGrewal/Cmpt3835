@@ -1,0 +1,25 @@
+cat > .gitignore << 'EOF'
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.cache
+runs/
+logs/
+.vscode/
+.ipynb_checkpoints/
+
+data/**
+
+!data/
+!data/Train/
+!data/Train/images/
+!data/Train/labels/
+!data/Validation/
+!data/Validation/images/
+!data/Validation/labels/
+!data/Test/
+!data/Test/images/
+!data/Test/labels/
+!data/**/.gitkeep
+EOF
