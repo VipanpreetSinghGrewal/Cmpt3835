@@ -1,41 +1,36 @@
-.PHONY: help check-python venv install download-data run clean
+.PHONY: help check-python system-deps venv install train run clean
 
 PYTHON := python3
 VENV := .venv
 PIP := $(VENV)/bin/pip
 PY := $(VENV)/bin/python
-DAGSHUB := $(VENV)/bin/dagshub
-
-REPO := svipanpreet709/3835
-REMOTE_DATA := data/eggs_dataset
-LOCAL_DATA := ./data
-APP := code.py
 REQ := requirements.txt
 
 help:
-	@echo "Available commands:"
-	@echo "  make venv           Create virtual environment"
-	@echo "  make install        Create venv and install dependencies"
-	@echo "  make download-data  Download dataset from DagsHub bucket"
-	@echo "  make run            Run the app"
-	@echo "  make clean          Remove venv and cache files"
+	@echo "make install   Create virtual environment and install packages"
+	@echo "make train     Train the YOLO model"
+	@echo "make run       Run the Gradio app"
+	@echo "make clean     Remove virtual environment and cache files"
 
 check-python:
 	@command -v $(PYTHON) >/dev/null 2>&1 || { echo "Python is not installed."; exit 1; }
 
+system-deps:
+	sudo apt-get update
+	sudo apt-get install -y libgl1 libglib2.0-0
+
 venv: check-python
 	$(PYTHON) -m venv $(VENV)
 
-install: venv
+install: system-deps venv
 	$(PIP) install --upgrade pip
 	$(PIP) install -r $(REQ)
 
-download-data: install
-	mkdir -p $(LOCAL_DATA)
-	$(DAGSHUB) download --bucket $(REPO) $(REMOTE_DATA) $(LOCAL_DATA)
+train: install
+	$(PY) train_model.py
 
 run: install
-	$(PY) $(APP)
+	$(PY) code.py
 
 clean:
 	rm -rf $(VENV)

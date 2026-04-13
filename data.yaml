@@ -1,0 +1,27 @@
+path: /workspaces/Cmpt3835/data
+train: Train/images
+val: Validation/images
+test: Test/images
+
+names:
+  0: Agelaius_phoeniceus
+  1: Ammodramus_savannarum
+  2: Anthus_spinoletta
+  3: Cardellina_pusilla
+  4: Certhia_americana
+  5: Cistothorus_palustris
+  6: Euphagus_cyanocephalus
+  7: Geothlypis_tolmiei
+  8: Geothlypis_trichas
+  9: Icteria_virens
+  10: Junco_hyemalis
+  11: Molothrus_ater
+  12: Passer_domesticus
+  13: Passerella_iliaca
+  14: Poecile_atricapillus
+  15: Pooecetes_gramineus
+  16: Quiscalus_quiscula
+  17: Setophaga_petechia
+  18: Setophaga_ruticilla
+  19: Vireo_olivaceus
+  20: Zonotrichia_albicollis
